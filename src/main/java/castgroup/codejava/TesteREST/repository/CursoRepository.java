@@ -17,7 +17,7 @@ public interface CursoRepository extends JpaRepository<Curso, Integer> {
     		@Param("data_inicio") Date data_inicio,
       @Param("data_termino") Date data_termino);
 	
-	@Query("select c from Curso c where c.data_inicio between :data_inicio and :data_termino or c.data_termino between :data_inicio and :data_termino and c.codigo != :codigo")
+	@Query("select c from Curso c where c.data_inicio between :data_inicio and :data_termino and c.data_termino between :data_inicio and :data_termino and c.codigo != :codigo")
     List<Curso> buscaCursoPorPeriodoECodigo(
     		@Param("data_inicio") Date data_inicio,
       @Param("data_termino") Date data_termino,

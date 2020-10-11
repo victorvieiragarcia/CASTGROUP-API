@@ -3,9 +3,14 @@ package castgroup.codejava.TesteREST.model;
 import java.sql.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+
+import com.sun.istack.NotNull;
 
 @Entity
 public class Curso {
@@ -15,7 +20,19 @@ public class Curso {
 	private Date data_termino;
 	private Integer quantidade_alunos_turma;
 	private Integer codigo_categoria;
+	private Categoria categoria;
 	
+	@OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "codigo")
+	public Categoria getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(Categoria categoria) {
+		this.categoria = categoria;
+	}
+
+	@NotNull
 	public Date getData_inicio() {
 		return data_inicio;
 	}
@@ -24,6 +41,7 @@ public class Curso {
 		this.data_inicio = data_inicio;
 	}
 
+	@NotNull
 	public Date getData_termino() {
 		return data_termino;
 	}
@@ -42,6 +60,7 @@ public class Curso {
 		this.codigo = codigo;
 	}
 
+	@NotNull
 	public String getDescricao_do_assunto() {
 		return descricao_do_assunto;
 	}
@@ -58,6 +77,7 @@ public class Curso {
 		this.quantidade_alunos_turma = quantidade_alunos_turma;
 	}
 
+	@NotNull
 	public Integer getCodigo_categoria() {
 		return codigo_categoria;
 	}
